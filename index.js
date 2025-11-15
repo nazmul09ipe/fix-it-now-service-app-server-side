@@ -146,16 +146,17 @@ async function run() {
     });
 
     // ----------------- MESSAGES -----------------
-    app.post("/messages", verifyFirebaseToken, async (req, res) => {
-      try {
-        const message = { ...req.body, createdAt: new Date() };
-        const result = await messagesCollection.insertOne(message);
-        res.status(201).send(result);
-      } catch (err) {
-        console.error(err);
-        res.status(500).send({ message: "Failed to save message" });
-      }
-    });
+    app.post("/messages", async (req, res) => {
+  try {
+    const message = { ...req.body, createdAt: new Date() };
+    const result = await messagesCollection.insertOne(message);
+    res.status(201).send(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Failed to save message" });
+  }
+});
+
 
     app.get("/messages", verifyFirebaseToken, async (req, res) => {
       const messages = await messagesCollection.find().toArray();
