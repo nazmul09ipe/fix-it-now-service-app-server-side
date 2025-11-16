@@ -4,7 +4,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config();
 const admin = require("firebase-admin");
 
-// ---------------- FIREBASE ADMIN INIT (Using .env only — secure) ----------------
+//FIREBASE ADMIN INIT (Using .env only — secure)
 admin.initializeApp({
   credential: admin.credential.cert({
     type: process.env.FIREBASE_TYPE,
