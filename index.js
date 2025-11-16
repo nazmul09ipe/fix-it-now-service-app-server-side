@@ -57,7 +57,7 @@ const verifyFirebaseToken = async (req, res, next) => {
   }
 };
 
-// ---------------- MAIN FUNCTION ----------------
+//  MAIN FUNCTION 
 async function run() {
   try {
     await client.connect();
