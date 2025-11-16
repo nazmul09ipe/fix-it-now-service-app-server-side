@@ -145,7 +145,7 @@ async function run() {
       res.send(result);
     });
 
-    // ----------------- MESSAGES -----------------
+    // MESSAGES 
     app.post("/messages", async (req, res) => {
   try {
     const message = { ...req.body, createdAt: new Date() };
