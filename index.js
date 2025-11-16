@@ -26,7 +26,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// ---------------- MONGODB ----------------
+//MONGODB 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pca4tsp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 const client = new MongoClient(uri, {
@@ -37,7 +37,7 @@ const client = new MongoClient(uri, {
   },
 });
 
-// ---------------- Middleware: Verify Firebase JWT ----------------
+//  Middleware: Verify Firebase JWT 
 const verifyFirebaseToken = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
