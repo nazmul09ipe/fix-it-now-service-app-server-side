@@ -1,16 +1,19 @@
 const express = require("express");
+const cors = require("cors");
+
+const app = express();
+
 const corsOptions = {
   origin: [
     "https://fix-it-now-app.web.app",
-    "http://localhost:5173"
+    "http://localhost:5173",
   ],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
-
+app.use(express.json());
 app.options("*", cors());
 app.use(express.json());
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
@@ -82,7 +85,7 @@ async function run() {
     console.log("MongoDB Connected & Routes Ready");
 
     //  SERVICES 
-    app.post("/services",  async (req, res) => {
+    app.post("/services", verifyFirebaseToken, async (req, res) => {
       try {
         const newService = {
           ...req.body,
@@ -99,7 +102,7 @@ async function run() {
       }
     });
 
-    app.get("/services", async (req, res) => {
+    app.get("/services",  async (req, res) => {
       const services = await serviceCollection.find().toArray();
       res.send(services);
     });
