@@ -163,9 +163,9 @@ async function run() {
       res.send(messages);
     });
 
-    app.listen(port, () =>
+    module.exports = app;
       console.log(`Server running on port ${port}`)
-    );
+    ;
   } catch (err) {
     console.error("MongoDB Connection Failed:", err);
   }
