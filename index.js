@@ -1,12 +1,15 @@
 const express = require("express");
-app.use(cors({
+const corsOptions = {
   origin: [
-    "http://localhost:5173",
     "https://fix-it-now-app.web.app",
-    "https://fix-it-now-app.firebaseapp.com"
+    "http://localhost:5173"
   ],
-  credentials: true
-}));
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.options("*", cors());
 app.use(express.json());
