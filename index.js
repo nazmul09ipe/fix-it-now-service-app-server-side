@@ -1,5 +1,15 @@
 const express = require("express");
-const cors = require("cors");
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://fix-it-now-app.web.app",
+    "https://fix-it-now-app.firebaseapp.com"
+  ],
+  credentials: true
+}));
+
+app.options("*", cors());
+app.use(express.json());
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config();
 const admin = require("firebase-admin");
