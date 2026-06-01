@@ -82,7 +82,7 @@ async function run() {
     console.log("MongoDB Connected & Routes Ready");
 
     //  SERVICES 
-    app.post("/services", verifyFirebaseToken, async (req, res) => {
+    app.post("/services",  async (req, res) => {
       try {
         const newService = {
           ...req.body,
